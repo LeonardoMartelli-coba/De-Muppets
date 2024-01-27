@@ -55,6 +55,7 @@ public class Duck : MonoBehaviour
     private bool isStunned = false;
     public Transform hatPivot;
     public int playerNUm;
+    public GameObject checkCinematic;
 
     private void Start()
     {
@@ -76,6 +77,8 @@ public class Duck : MonoBehaviour
 
     void Update()
     {
+
+        if(!checkCinematic.activeSelf){return;}
         if (isStunned) {
             canDash = true;
             isDashing = false;
@@ -97,8 +100,8 @@ public class Duck : MonoBehaviour
         //rb.AddForce(velocity * Time.deltaTime);
         float horizontal = 0;
         float vertical = 0;
-        horizontal = Input.GetAxisRaw(HorizontalAxis);
-        vertical = Input.GetAxisRaw(VerticalAxis);
+        vertical = Input.GetAxisRaw(HorizontalAxis);
+        horizontal = -Input.GetAxisRaw(VerticalAxis);
 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 

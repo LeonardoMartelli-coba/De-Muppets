@@ -14,11 +14,12 @@ public class ResetTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) {
-            Debug.Log(("OGGG"));
+
             int num = other.GetComponent<Duck>().playerNUm;
+            Debug.Log(("OGGG " + num));
             HatManager.Instance.points[num]++;
-            Debug.Log("Player 1: " + HatManager.Instance.points[1]);
-            Debug.Log("Player 2: " + HatManager.Instance.points[2]);
+            Debug.Log("Player 2: " + HatManager.Instance.points[1]);
+            Debug.Log("Player 1: " + HatManager.Instance.points[2]);
             uiPoints.UpdatePoints();
             duck1.transform.position = spawnDuck1.position;
             duck1.transform.rotation = spawnDuck1.rotation;

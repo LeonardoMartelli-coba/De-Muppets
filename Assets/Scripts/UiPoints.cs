@@ -25,14 +25,14 @@ public class UiPoints : MonoBehaviour
         }
         if (HatManager.Instance.points[1] == 3)
         {
-            text.text = "WIN P1";
+            text.text = "WIN P2";
             haveWin = true;
             StartCoroutine(DisplayWin());
             return;
         }
         if (HatManager.Instance.points[2] == 3)
         {
-            text.text = "WIN P2";
+            text.text = "WIN P1";
             haveWin = true;
             StartCoroutine(DisplayWin());
             return;
