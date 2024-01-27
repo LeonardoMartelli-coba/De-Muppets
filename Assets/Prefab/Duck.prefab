@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5169661667737545235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8263175002160615491}
+  m_Layer: 0
+  m_Name: HatPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8263175002160615491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169661667737545235}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.08142303, y: 0.9774536, z: 0.033065364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6686888955309977644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6655025727333187376
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599136112773400325}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.33, y: 0.09, z: -2.465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -143,7 +174,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599136112773400325}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bd983a51ac7f92545a2bfd8700f91342, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -282,8 +313,10 @@ MonoBehaviour:
   Jump: 350
   HorizontalAxis: Horizontal1
   VerticalAxis: Vertical1
-  collisionForce: 1500
+  collisionForce: 700
   collideDelay: 0.1
+  hatPivot: {fileID: 8263175002160615491}
+  playerNUm: 1
 --- !u!54 &8908516507687788279
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -309,7 +342,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &2940050984667854230
 Animator:
@@ -442,12 +475,22 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b4f0daed48080c84aab3fc564b9cec33, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -2029389023628863299, guid: a4daeec321532d04f846a25cf8a9beeb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8263175002160615491}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4daeec321532d04f846a25cf8a9beeb, type: 3}
 --- !u!4 &4075768664740122490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a4daeec321532d04f846a25cf8a9beeb,
+    type: 3}
+  m_PrefabInstance: {fileID: 4547144122804054161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6686888955309977644 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2029389023628863299, guid: a4daeec321532d04f846a25cf8a9beeb,
     type: 3}
   m_PrefabInstance: {fileID: 4547144122804054161}
   m_PrefabAsset: {fileID: 0}

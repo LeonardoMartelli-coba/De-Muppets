@@ -135,37 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1440f27d900c464daa1801c06265f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &71461374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 71461375}
-  m_Layer: 0
-  m_Name: HatPivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &71461375
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71461374}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.08142303, y: 0.9774536, z: 0.033065364}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 295325945}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &185456673
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,12 +387,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1812289209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &295325945 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6686888955309977644, guid: f87f7233ac304024d9c2f05fbdeb393b,
-    type: 3}
-  m_PrefabInstance: {fileID: 915569488022252234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &436328885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,42 +2079,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 560307147343706163, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: bd983a51ac7f92545a2bfd8700f91342,
-        type: 2}
-    - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: hatPivot
-      value: 
-      objectReference: {fileID: 71461375}
-    - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: playerNUm
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: collisionForce
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 4075768664740122490, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4075768664740122490, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4075768664740122490, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
     - target: {fileID: 7599136112773400325, guid: f87f7233ac304024d9c2f05fbdeb393b,
         type: 3}
       propertyPath: m_Name
@@ -2207,23 +2134,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8908516507687788279, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8908516507687788279, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6686888955309977644, guid: f87f7233ac304024d9c2f05fbdeb393b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 71461375}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f87f7233ac304024d9c2f05fbdeb393b, type: 3}
 --- !u!1660057539 &9223372036854775807
