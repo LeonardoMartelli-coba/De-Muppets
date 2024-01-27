@@ -719,9 +719,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1440f27d900c464daa1801c06265f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1590025839}
+  controller: {fileID: 1925775028}
   speed: 1000
   maxSpeed: 4
+  maxSpeedNormal: 4
+  maxSpeedDash: 100
   turnSmoothTime: 0.3
   tufsdfsdf: 0.2
   boxCastHalfExtend: {x: 0.5, y: 0.5, z: 0.5}
@@ -795,6 +797,37 @@ MonoBehaviour:
   timePressEnd: 2
   timePress: 0
   minJumpTime: 0.35
+  dashCurver:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dashForce: 1000
+  timeDashEnd: 2
+  timeDash: 0
+  minDashTime: 0
+  dashDelay: 0.3
+  dashDelay2: 1
+  Dash: 351
   Jump: 350
   HorizontalAxis: Horizontal1
   VerticalAxis: Vertical1
@@ -932,6 +965,8 @@ MonoBehaviour:
   controller: {fileID: 1925775028}
   speed: 1000
   maxSpeed: 4
+  maxSpeedNormal: 4
+  maxSpeedDash: 100
   turnSmoothTime: 0.3
   tufsdfsdf: 0.2
   boxCastHalfExtend: {x: 0.5, y: 0.5, z: 0.5}
@@ -1005,6 +1040,37 @@ MonoBehaviour:
   timePressEnd: 2
   timePress: 0
   minJumpTime: 0.35
+  dashCurver:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dashForce: 1000
+  timeDashEnd: 2
+  timeDash: 0
+  minDashTime: 0
+  dashDelay: 0.3
+  dashDelay2: 1
+  Dash: 371
   Jump: 370
   HorizontalAxis: Horizontal2
   VerticalAxis: Vertical2
