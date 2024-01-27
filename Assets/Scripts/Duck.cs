@@ -41,6 +41,7 @@ public class Duck : MonoBehaviour
     private bool canDash;
     public float dashDelay;
     public float dashDelay2;
+    public float stunDuration;
     private Rigidbody rb;
 
     public KeyCode Dash;
@@ -50,6 +51,7 @@ public class Duck : MonoBehaviour
     public float collisionForce;
     public float collideDelay;
     private bool isColliding;
+    private bool isStunned = false;
 
     private void Start()
     {
@@ -75,15 +77,23 @@ public class Duck : MonoBehaviour
 
     void Update()
     {
+        if (isStunned) {
+            canDash = true;
+            isDashing = false;
+            timeDash = 0;
+            time = 0;
+            timePress = 0;
+            return;
+        }
         isGrounded = Physics.BoxCast(groundCheck.position, boxCastHalfExtend, Vector3.down, transform.rotation, float.MaxValue, groundMask);
         //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (isGrounded)
-        {
-            velocity.y = 0f;
-        }
 
-        velocity.y += gravity * Time.deltaTime;
+
+        //velocity.y += gravity * Time.deltaTime;
+        if (!isJumping) {
+            rb.AddForce(Vector3.down*gravity);
+        }
         //controller.Move(velocity * Time.deltaTime);
         //rb.AddForce(velocity * Time.deltaTime);
         float horizontal = 0;
@@ -119,11 +129,13 @@ public class Duck : MonoBehaviour
             timePress = Mathf.Clamp(timePress, 0.01f, timePressEnd);
 
         }
-        if (Input.GetKey(Dash)) {
+        if (Input.GetKey(Dash) && canDash) {
             timeDash += Time.deltaTime;
             isDashing = true;
 
         }
+
+        
         if (Input.GetKeyUp(Dash) && !isJumping && isGrounded && canDash) {
             maxSpeed = maxSpeedDash;
             canDash = false;
@@ -155,6 +167,7 @@ public class Duck : MonoBehaviour
         yield return new WaitForSeconds(dashDelay);
         maxSpeed = maxSpeedNormal;
         isDashing = false;
+        Debug.Log("AAAAAAAA " + isDashing);
         yield return new WaitForSeconds(dashDelay2);
         canDash = true;
     }
@@ -168,5 +181,17 @@ public class Duck : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawCube(groundCheck.position, boxCastHalfExtend*2);
+    }
+
+    public void Stun()
+    {
+        StartCoroutine(StunCoroutine());
+    }
+
+    IEnumerator StunCoroutine()
+    {
+        isStunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
     }
 }

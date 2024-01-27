@@ -217,6 +217,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &283566360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 283566361}
+  - component: {fileID: 283566362}
+  - component: {fileID: 283566363}
+  m_Layer: 0
+  m_Name: TriggerStun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &283566361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283566360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.521, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1590025837}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &283566362
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283566360}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9, y: 0.03, z: 0.9}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &283566363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283566360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a97836fabd39d4fb39d383a149fe17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duck: {fileID: 1590025838}
 --- !u!1 &436328885
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +766,6 @@ GameObject:
   - component: {fileID: 1590025837}
   - component: {fileID: 1590025834}
   - component: {fileID: 1590025838}
-  - component: {fileID: 1590025839}
   - component: {fileID: 1590025840}
   m_Layer: 0
   m_Name: Duck
@@ -745,6 +811,7 @@ Transform:
   - {fileID: 1197796472}
   - {fileID: 529317409}
   - {fileID: 776214596}
+  - {fileID: 283566361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1590025838
@@ -759,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1440f27d900c464daa1801c06265f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1925775028}
+  controller: {fileID: 0}
   speed: 1000
   maxSpeed: 4
   maxSpeedNormal: 4
@@ -767,7 +834,7 @@ MonoBehaviour:
   turnSmoothTime: 0.3
   tufsdfsdf: 0.2
   boxCastHalfExtend: {x: 0.5, y: 0.5, z: 0.5}
-  gravity: -90.81
+  gravity: 1
   groundCheck: {fileID: 776214596}
   groundDistance: 0.4
   groundMask:
@@ -861,44 +928,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashForce: 1000
+  dashForce: 2000
   timeDashEnd: 2
   timeDash: 0
   minDashTime: 0
   dashDelay: 0.3
   dashDelay2: 1
+  stunDuration: 1.5
   Dash: 351
   Jump: 350
   HorizontalAxis: Horizontal1
   VerticalAxis: Vertical1
   collisionForce: 1500
   collideDelay: 0.1
---- !u!143 &1590025839
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590025833}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1590025840
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -957,6 +999,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1925775031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1832559196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a39d4ce938231394196efb0804e52ce3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1900835850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1832559198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832559196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a97836fabd39d4fb39d383a149fe17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duck: {fileID: 0}
 --- !u!1001 &1900835850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1099,6 +1160,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a39d4ce938231394196efb0804e52ce3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1832559198}
     - targetCorrespondingSourceObject: {fileID: 1614979834934429243, guid: a39d4ce938231394196efb0804e52ce3,
         type: 3}
       insertIndex: -1
@@ -1175,7 +1240,6 @@ GameObject:
   - component: {fileID: 1925775031}
   - component: {fileID: 1925775030}
   - component: {fileID: 1925775029}
-  - component: {fileID: 1925775028}
   - component: {fileID: 1925775027}
   m_Layer: 0
   m_Name: Duck (1)
@@ -1211,32 +1275,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!143 &1925775028
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925775026}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1925775029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,7 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1440f27d900c464daa1801c06265f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1925775028}
+  controller: {fileID: 0}
   speed: 1000
   maxSpeed: 4
   maxSpeedNormal: 4
@@ -1257,7 +1295,7 @@ MonoBehaviour:
   turnSmoothTime: 0.3
   tufsdfsdf: 0.2
   boxCastHalfExtend: {x: 0.5, y: 0.5, z: 0.5}
-  gravity: -90.81
+  gravity: 1
   groundCheck: {fileID: 1782691812}
   groundDistance: 0.4
   groundMask:
@@ -1351,12 +1389,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashForce: 1000
+  dashForce: 2000
   timeDashEnd: 2
   timeDash: 0
   minDashTime: 0
   dashDelay: 0.3
   dashDelay2: 1
+  stunDuration: 1.5
   Dash: 371
   Jump: 370
   HorizontalAxis: Horizontal2
