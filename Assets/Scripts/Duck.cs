@@ -52,26 +52,22 @@ public class Duck : MonoBehaviour
     public float collideDelay;
     private bool isColliding;
     private bool isStunned = false;
+    public Transform hatPivot;
 
     private void Start()
     {
         yStart = transform.position.y;
         rb = GetComponent<Rigidbody>();
         canDash = true;
+        Instantiate(HatManager.Instance.TakeHat(), hatPivot);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
 
         if (collision.transform.CompareTag("Player") && !isColliding) {
-            Vector3 dir = transform.position - collision.transform.position;
-            dir.Normalize();
-            Debug.Log(transform.name);
-            maxSpeed = maxSpeedDash;
-            rb.AddForce(dir * collisionForce, ForceMode.Acceleration);
 
-            isColliding = true;
-            StartCoroutine(CollideDelay());
+            StartCoroutine(CollideDelay(collision));
         }
     }
 
@@ -172,8 +168,17 @@ public class Duck : MonoBehaviour
         canDash = true;
     }
 
-    IEnumerator CollideDelay()
+    IEnumerator CollideDelay(Collision collision)
     {
+        Debug.Log(collision.transform.name + " Velocita" +  collision.transform.GetComponent<Rigidbody>().velocity.magnitude);
+        float v = Mathf.Abs(collision.transform.GetComponent<Rigidbody>().velocity.magnitude);
+        yield return new WaitForEndOfFrame();
+        Vector3 dir = transform.position - collision.transform.position;
+        dir.Normalize();
+        maxSpeed = maxSpeedDash;
+        rb.AddForce(dir * collisionForce * v, ForceMode.Acceleration);
+
+        isColliding = true;
         yield return new WaitForSeconds(collideDelay);
         maxSpeed = maxSpeedNormal;
         isColliding = false;
