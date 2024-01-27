@@ -135,7 +135,7 @@ public class Duck : MonoBehaviour
 
         }
 
-        
+
         if (Input.GetKeyUp(Dash) && !isJumping && isGrounded && canDash) {
             maxSpeed = maxSpeedDash;
             canDash = false;
@@ -178,10 +178,7 @@ public class Duck : MonoBehaviour
         maxSpeed = maxSpeedNormal;
         isColliding = false;
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawCube(groundCheck.position, boxCastHalfExtend*2);
-    }
+
 
     public void Stun()
     {
