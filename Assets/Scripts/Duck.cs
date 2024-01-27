@@ -43,6 +43,7 @@ public class Duck : MonoBehaviour
     public float dashDelay2;
     public float stunDuration;
     private Rigidbody rb;
+    private Animator animator;
 
     public KeyCode Dash;
     public KeyCode Jump;
@@ -59,6 +60,7 @@ public class Duck : MonoBehaviour
     {
         yStart = transform.position.y;
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         canDash = true;
         Instantiate(HatManager.Instance.TakeHat(), hatPivot);
     }
@@ -120,16 +122,18 @@ public class Duck : MonoBehaviour
         }
         if (Input.GetKey(Jump)) {
             timePress += Time.deltaTime;
+            animator.SetBool("LoadingJump", true);
         }
         if (Input.GetKeyUp(Jump) && !isJumping && isGrounded && !isDashing) {
             isJumping = true;
             timePress = Mathf.Clamp(timePress, 0.01f, timePressEnd);
-
+            animator.SetTrigger("Jump");
+            animator.SetBool("LoadingJump", false);
         }
         if (Input.GetKey(Dash) && canDash) {
             timeDash += Time.deltaTime;
             isDashing = true;
-
+            animator.SetBool("DashLoading", true);
         }
 
 
@@ -138,7 +142,7 @@ public class Duck : MonoBehaviour
             canDash = false;
             timeDash = Mathf.Clamp(timeDash, 0.01f, timeDashEnd);
             rb.AddForce(transform.forward * (dashCurver.Evaluate(timeDash/timeDashEnd) * dashForce), ForceMode.Acceleration);
-
+            animator.SetBool("DashLoading", false);
             StartCoroutine(DashDelay());
         }
         if(isJumping) {
