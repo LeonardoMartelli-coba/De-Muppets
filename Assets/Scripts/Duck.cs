@@ -25,8 +25,16 @@ public class Duck : MonoBehaviour
     public float time;
     public float yStart;
     public bool isJumping;
+    public AnimationCurve jumpMultiplierCurver;
+    public float timePressEnd ;
+    public float timePress ;
+    public float minJumpTime ;
 
     private Rigidbody rb;
+
+    public KeyCode Jump;
+    public string HorizontalAxis;
+    public string VerticalAxis;
 
     private void Start()
     {
@@ -46,9 +54,14 @@ public class Duck : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         //controller.Move(velocity * Time.deltaTime);
-        rb.AddForce(velocity * Time.deltaTime);
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        //rb.AddForce(velocity * Time.deltaTime);
+        float horizontal = 0;
+        float vertical = 0;
+        if (!isJumping && isGrounded) {
+           horizontal = Input.GetAxisRaw(HorizontalAxis);
+           vertical = Input.GetAxisRaw(VerticalAxis);
+        }
+
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         Vector3 moveDir = Vector3.Lerp(transform.forward, direction.normalized, tufsdfsdf);
@@ -67,21 +80,26 @@ public class Duck : MonoBehaviour
         if (rb.velocity.magnitude > maxSpeed) {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping) {
+        if (Input.GetKey(Jump)) {
+            timePress += Time.deltaTime;
+        }
+        if (Input.GetKeyUp(Jump) && !isJumping && isGrounded) {
             isJumping = true;
+            timePress = Mathf.Clamp(timePress, 0.01f, timePressEnd);
+
         }
 
-
-
-
-        if(isJumping){
-            if (time < jumpEndTime) {
+        if(isJumping) {
+            float j = jumpEndTime * (timePress / timePressEnd);
+            j = Mathf.Clamp(j, minJumpTime, jumpEndTime);
+            if (time < j) {
                 time += Time.deltaTime;
-                time = Mathf.Clamp(time, 0, jumpEndTime);
-                transform.position = new Vector3(transform.position.x, yStart + jumpCurve.Evaluate(time/jumpEndTime), transform.position.z);
+                time = Mathf.Clamp(time, 0, j);
+                transform.position = new Vector3(transform.position.x, yStart + (jumpCurve.Evaluate(time/j) * jumpMultiplierCurver.Evaluate(timePress/timePressEnd)), transform.position.z);
             }
             else {
                 time = 0;
+                timePress = 0;
                 isJumping = false;
             }
 
