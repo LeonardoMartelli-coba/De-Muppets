@@ -6,8 +6,11 @@ public class HatManager : MonoBehaviour
 {
     public static HatManager Instance;
     public List<GameObject> hats;
+    public Dictionary<int, int> points = new Dictionary<int, int>();
     private void Awake()
     {
+        points.Add(1,0);
+        points.Add(2,0);
         if (Instance == null)
             Instance = this;
         else

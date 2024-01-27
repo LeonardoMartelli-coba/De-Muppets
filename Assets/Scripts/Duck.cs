@@ -53,6 +53,7 @@ public class Duck : MonoBehaviour
     private bool isColliding;
     private bool isStunned = false;
     public Transform hatPivot;
+    public int playerNUm;
 
     private void Start()
     {
@@ -170,13 +171,13 @@ public class Duck : MonoBehaviour
 
     IEnumerator CollideDelay(Collision collision)
     {
-        Debug.Log(collision.transform.name + " Velocita" +  collision.transform.GetComponent<Rigidbody>().velocity.magnitude);
-        float v = Mathf.Abs(collision.transform.GetComponent<Rigidbody>().velocity.magnitude);
-        yield return new WaitForEndOfFrame();
+        //Debug.Log(collision.transform.name + " Velocita" +  collision.transform.GetComponent<Rigidbody>().velocity.magnitude);
+        //float v = Mathf.Abs(collision.transform.GetComponent<Rigidbody>().velocity.magnitude);
+        //yield return new WaitForSeconds(1);
         Vector3 dir = transform.position - collision.transform.position;
         dir.Normalize();
         maxSpeed = maxSpeedDash;
-        rb.AddForce(dir * collisionForce * v, ForceMode.Acceleration);
+        rb.AddForce(dir * collisionForce, ForceMode.Acceleration);
 
         isColliding = true;
         yield return new WaitForSeconds(collideDelay);
