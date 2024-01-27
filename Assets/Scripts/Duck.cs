@@ -47,12 +47,30 @@ public class Duck : MonoBehaviour
     public KeyCode Jump;
     public string HorizontalAxis;
     public string VerticalAxis;
+    public float collisionForce;
+    public float collideDelay;
+    private bool isColliding;
 
     private void Start()
     {
         yStart = transform.position.y;
         rb = GetComponent<Rigidbody>();
         canDash = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.transform.CompareTag("Player") && !isColliding) {
+            Vector3 dir = transform.position - collision.transform.position;
+            dir.Normalize();
+            Debug.Log(transform.name);
+            maxSpeed = maxSpeedDash;
+            rb.AddForce(dir * collisionForce, ForceMode.Acceleration);
+
+            isColliding = true;
+            StartCoroutine(CollideDelay());
+        }
     }
 
     void Update()
@@ -104,9 +122,10 @@ public class Duck : MonoBehaviour
         if (Input.GetKey(Dash)) {
             timeDash += Time.deltaTime;
             isDashing = true;
-            maxSpeed = maxSpeedDash;
+
         }
         if (Input.GetKeyUp(Dash) && !isJumping && isGrounded && canDash) {
+            maxSpeed = maxSpeedDash;
             canDash = false;
             timeDash = Mathf.Clamp(timeDash, 0.01f, timeDashEnd);
             rb.AddForce(transform.forward * (dashCurver.Evaluate(timeDash/timeDashEnd) * dashForce), ForceMode.Acceleration);
@@ -138,6 +157,13 @@ public class Duck : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashDelay2);
         canDash = true;
+    }
+
+    IEnumerator CollideDelay()
+    {
+        yield return new WaitForSeconds(collideDelay);
+        maxSpeed = maxSpeedNormal;
+        isColliding = false;
     }
     private void OnDrawGizmos()
     {

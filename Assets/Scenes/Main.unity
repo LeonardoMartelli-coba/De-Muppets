@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 1590025840}
   m_Layer: 0
   m_Name: Duck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -871,6 +871,8 @@ MonoBehaviour:
   Jump: 350
   HorizontalAxis: Horizontal1
   VerticalAxis: Vertical1
+  collisionForce: 1500
+  collideDelay: 0.1
 --- !u!143 &1590025839
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1177,7 +1179,7 @@ GameObject:
   - component: {fileID: 1925775027}
   m_Layer: 0
   m_Name: Duck (1)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1359,6 +1361,8 @@ MonoBehaviour:
   Jump: 370
   HorizontalAxis: Horizontal2
   VerticalAxis: Vertical2
+  collisionForce: 1500
+  collideDelay: 0.1
 --- !u!65 &1925775030
 BoxCollider:
   m_ObjectHideFlags: 0
