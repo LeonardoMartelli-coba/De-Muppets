@@ -12,6 +12,11 @@ public class Arena : MonoBehaviour
     public int sceneNumber;
     public List<GameObject> images;
     public List<Sprite> sprites;
+    public GameObject checkCinematic;
+    private AudioSource audioSource;
+    public AudioClip audioClip;
+    private bool musicChanged = false;
+
 
     private void Awake()
     {
@@ -19,14 +24,23 @@ public class Arena : MonoBehaviour
         arenas[r].SetActive(true);
 
         foreach (var image in images) {
-            image.GetComponent<Image>().sprite = sprites[r];        
+            image.GetComponent<Image>().sprite = sprites[r];
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.D)) {
             SceneManager.LoadScene(sceneNumber);
+        }
+
+        if (checkCinematic.activeSelf && !musicChanged) {
+
+            audioSource.clip = audioClip;
+            audioSource.Play();
+            musicChanged = true;
         }
     }
 }
