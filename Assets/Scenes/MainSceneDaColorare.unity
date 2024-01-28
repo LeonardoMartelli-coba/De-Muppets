@@ -223,9 +223,19 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 6f22d95646112604a8e60163ddeab663, type: 3}
     - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
         type: 3}
+      propertyPath: VictorySounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
+        type: 3}
       propertyPath: FallingSounds.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 0ba523fe103b3804f8575cc8e1436ddb, type: 3}
+    - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
+        type: 3}
+      propertyPath: VictorySounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 879c9bc37276c5e4389e359c7253ec00, type: 3}
     - target: {fileID: 7599136112773400325, guid: f87f7233ac304024d9c2f05fbdeb393b,
         type: 3}
       propertyPath: m_Name
@@ -10408,7 +10418,9 @@ MonoBehaviour:
   JumpSounds: []
   StunSounds: []
   FallingSounds: []
+  VictorySounds: []
   audioSource: {fileID: 0}
+  end: 0
 --- !u!143 &1590025839
 CharacterController:
   m_ObjectHideFlags: 0
@@ -10823,9 +10835,19 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 6f22d95646112604a8e60163ddeab663, type: 3}
     - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
         type: 3}
+      propertyPath: VictorySounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
+        type: 3}
       propertyPath: FallingSounds.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 0ba523fe103b3804f8575cc8e1436ddb, type: 3}
+    - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
+        type: 3}
+      propertyPath: VictorySounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 879c9bc37276c5e4389e359c7253ec00, type: 3}
     - target: {fileID: 7599136112773400325, guid: f87f7233ac304024d9c2f05fbdeb393b,
         type: 3}
       propertyPath: m_Name
@@ -13249,7 +13271,9 @@ MonoBehaviour:
   JumpSounds: []
   StunSounds: []
   FallingSounds: []
+  VictorySounds: []
   audioSource: {fileID: 0}
+  end: 0
 --- !u!65 &1925775030
 BoxCollider:
   m_ObjectHideFlags: 0

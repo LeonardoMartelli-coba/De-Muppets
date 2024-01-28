@@ -64,8 +64,10 @@ public class Duck : MonoBehaviour
     public List<AudioClip> JumpSounds;
     public List<AudioClip> StunSounds;
     public List<AudioClip> FallingSounds;
+    public List<AudioClip> VictorySounds;
     public  AudioSource audioSource;
-
+    public bool end;
+    public bool haveWin;
     private void Start()
     {
         yStart = transform.position.y;
@@ -84,6 +86,12 @@ public class Duck : MonoBehaviour
         }
     }
 
+
+    public void StopFalling()
+    {
+        animator.SetBool("DeathFall", false);
+    }
+
     private void PlaySoundsRoundom(List<AudioClip> sounds)
     {
         audioSource.PlayOneShot(sounds[Random.Range(0, sounds.Count)]);
@@ -92,7 +100,7 @@ public class Duck : MonoBehaviour
     void Update()
     {
 
-        if(!checkCinematic.activeSelf){return;}
+        if(!checkCinematic.activeSelf || end){return;}
         if (isStunned) {
             canDash = true;
             isDashing = false;
@@ -104,8 +112,9 @@ public class Duck : MonoBehaviour
         isGrounded = Physics.BoxCast(groundCheck.position, boxCastHalfExtend, Vector3.down, transform.rotation, float.MaxValue, groundMask);
         //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-            animator.SetBool("DeathFall", !isGrounded);
+
             if (!isGrounded && !havePlayerFallingSounds) {
+                animator.SetBool("DeathFall", !isGrounded);
                 havePlayerFallingSounds = true;
                 PlaySoundsRoundom(FallingSounds);
             }
@@ -215,6 +224,7 @@ public class Duck : MonoBehaviour
 
     public void PlayRandomVicotryAnimation()
     {
+        PlaySoundsRoundom(VictorySounds);
         int r = Random.Range(0, 3);
         switch (r) {
             case 0:
