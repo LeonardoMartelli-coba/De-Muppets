@@ -15,40 +15,37 @@ public class ResetTrigger : MonoBehaviour
     public float delay;
     public AudioSource audioSource;
     public List<AudioClip> VictoryRoundsSounds;
+    public bool haveWin;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) {
 
             int num = other.GetComponent<Duck>().playerNUm;
             Debug.Log(("OGGG " + num));
-            HatManager.Instance.points[num]++;
-            PlaySoundsRoundom(VictoryRoundsSounds);
-            Debug.Log("Player 2: " + HatManager.Instance.points[1]);
-            Debug.Log("Player 1: " + HatManager.Instance.points[2]);
-            uiPoints.UpdatePoints();
-            duck1.transform.position = spawnDuck1.position;
-            duck1.transform.rotation = spawnDuck1.rotation;
-            duck2.transform.position = spawnDuck2.position;
-            duck2.transform.rotation = spawnDuck2.rotation;
-            duck1.havePlayerFallingSounds = false;
-            duck2.havePlayerFallingSounds = false;
+            StartCoroutine(ResetCoroutine(num));
             if (num == 1) {
                 if (HatManager.Instance.points[num] == 3) {
                     duck2.BigVicoryAnim();
+                    haveWin = true;
+                    duck1.end = true;
+                    duck2.haveWin = true;
+                    duck2.end = true;
                 }
                 else {
                     duck2.PlayRandomVicotryAnimation();
                 }
-
             }
             else {
                 if (HatManager.Instance.points[num] == 3) {
                     duck1.BigVicoryAnim();
+                    haveWin = true;
+                    duck1.end = true;
+                    duck1.haveWin = true;
+                    duck2.end = true;
                 }
                 else {
                     duck1.PlayRandomVicotryAnimation();
                 }
-
             }
         }
     }
@@ -56,9 +53,37 @@ public class ResetTrigger : MonoBehaviour
     IEnumerator DelayTime()
     {
         scored = true;
+        Debug.Log("MARLENA TORNA A CASA ");
         yield return new WaitForSeconds(delay);
         scored = false;
     }
+
+    IEnumerator ResetCoroutine(int n)
+    {
+        HatManager.Instance.points[n]++;
+        if (!scored) {
+            StartCoroutine(DelayTime());
+        }
+
+        PlaySoundsRoundom(VictoryRoundsSounds);
+        uiPoints.UpdatePoints();
+        if (n == 1) {
+            duck1.StopFalling();
+        }
+        else {
+            duck2.StopFalling();
+        }
+        yield return new WaitForSeconds(0.5f);
+        duck1.transform.position = spawnDuck1.position;
+        duck1.transform.rotation = spawnDuck1.rotation;
+        duck2.transform.position = spawnDuck2.position;
+        duck2.transform.rotation = spawnDuck2.rotation;
+        duck1.havePlayerFallingSounds = false;
+        duck2.havePlayerFallingSounds = false;
+
+
+    }
+
 
     private void PlaySoundsRoundom(List<AudioClip> sounds)
     {
