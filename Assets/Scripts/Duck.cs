@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Duck : MonoBehaviour
 {
@@ -53,9 +54,17 @@ public class Duck : MonoBehaviour
     public float collideDelay;
     private bool isColliding;
     private bool isStunned = false;
+    public bool havePlayerFallingSounds = false;
     public Transform hatPivot;
     public int playerNUm;
     public GameObject checkCinematic;
+    public float deathDelay;
+
+    public List<AudioClip> DashSounds;
+    public List<AudioClip> JumpSounds;
+    public List<AudioClip> StunSounds;
+    public List<AudioClip> FallingSounds;
+    public  AudioSource audioSource;
 
     private void Start()
     {
@@ -75,6 +84,11 @@ public class Duck : MonoBehaviour
         }
     }
 
+    private void PlaySoundsRoundom(List<AudioClip> sounds)
+    {
+        audioSource.PlayOneShot(sounds[Random.Range(0, sounds.Count)]);
+    }
+
     void Update()
     {
 
@@ -90,6 +104,11 @@ public class Duck : MonoBehaviour
         isGrounded = Physics.BoxCast(groundCheck.position, boxCastHalfExtend, Vector3.down, transform.rotation, float.MaxValue, groundMask);
         //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
+            animator.SetBool("DeathFall", !isGrounded);
+            if (!isGrounded && !havePlayerFallingSounds) {
+                havePlayerFallingSounds = true;
+                PlaySoundsRoundom(FallingSounds);
+            }
 
 
         //velocity.y += gravity * Time.deltaTime;
@@ -128,6 +147,7 @@ public class Duck : MonoBehaviour
             animator.SetBool("LoadingJump", true);
         }
         if (Input.GetKeyUp(Jump) && !isJumping && isGrounded && !isDashing) {
+            PlaySoundsRoundom(JumpSounds);
             isJumping = true;
             timePress = Mathf.Clamp(timePress, 0.01f, timePressEnd);
             animator.SetTrigger("Jump");
@@ -144,6 +164,7 @@ public class Duck : MonoBehaviour
             maxSpeed = maxSpeedDash;
             canDash = false;
             timeDash = Mathf.Clamp(timeDash, 0.01f, timeDashEnd);
+            PlaySoundsRoundom(DashSounds);
             rb.AddForce(transform.forward * (dashCurver.Evaluate(timeDash/timeDashEnd) * dashForce), ForceMode.Acceleration);
             animator.SetBool("DashLoading", false);
             StartCoroutine(DashDelay());
@@ -192,9 +213,33 @@ public class Duck : MonoBehaviour
         isColliding = false;
     }
 
+    public void PlayRandomVicotryAnimation()
+    {
+        int r = Random.Range(0, 3);
+        switch (r) {
+            case 0:
+                Debug.Log("v1");
+                animator.SetTrigger("V1");
+                break;
+            case 1:
+                Debug.Log("v2");
+                animator.SetTrigger("V2");
+                break;
+            case 2:
+                Debug.Log("v3");
+                animator.SetTrigger("V3");
+                break;
+        }
+    }
+
+    public void BigVicoryAnim()
+    {
+        animator.SetTrigger("BV");
+    }
 
     public void Stun()
     {
+        PlaySoundsRoundom(StunSounds);
         StartCoroutine(StunCoroutine());
     }
 

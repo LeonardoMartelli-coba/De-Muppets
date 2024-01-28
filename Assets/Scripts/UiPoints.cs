@@ -11,6 +11,8 @@ public class UiPoints : MonoBehaviour
     public GameObject panel;
     public TMP_Text text;
     private bool haveWin;
+    public AudioSource audioSource;
+    public List<AudioClip> victorySounds;
 
     public void UpdatePoints()
     {
@@ -41,7 +43,13 @@ public class UiPoints : MonoBehaviour
 
     IEnumerator DisplayWin()
     {
+        PlaySoundsRoundom(victorySounds);
         yield return new WaitForSeconds(0.5f);
         panel.SetActive(true);
+    }
+
+    private void PlaySoundsRoundom(List<AudioClip> sounds)
+    {
+        audioSource.PlayOneShot(sounds[Random.Range(0, sounds.Count)]);
     }
 }
