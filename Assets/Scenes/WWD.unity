@@ -4447,7 +4447,7 @@ PrefabInstance:
     - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
         type: 3}
       propertyPath: Jump
-      value: 411
+      value: 410
       objectReference: {fileID: 0}
     - target: {fileID: 4052898699137237107, guid: f87f7233ac304024d9c2f05fbdeb393b,
         type: 3}
@@ -10994,7 +10994,10 @@ MonoBehaviour:
   JumpSounds: []
   StunSounds: []
   FallingSounds: []
+  VictorySounds: []
   audioSource: {fileID: 0}
+  end: 0
+  haveWin: 0
 --- !u!143 &1590025839
 CharacterController:
   m_ObjectHideFlags: 0
@@ -13835,7 +13838,10 @@ MonoBehaviour:
   JumpSounds: []
   StunSounds: []
   FallingSounds: []
+  VictorySounds: []
   audioSource: {fileID: 0}
+  end: 0
+  haveWin: 0
 --- !u!65 &1925775030
 BoxCollider:
   m_ObjectHideFlags: 0
