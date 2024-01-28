@@ -175,6 +175,7 @@ public class Duck : MonoBehaviour
             timeDash = Mathf.Clamp(timeDash, 0.01f, timeDashEnd);
             PlaySoundsRoundom(DashSounds);
             rb.AddForce(transform.forward * (dashCurver.Evaluate(timeDash/timeDashEnd) * dashForce), ForceMode.Acceleration);
+	    timeDash = 0.01f;	
             animator.SetBool("DashLoading", false);
             StartCoroutine(DashDelay());
         }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.29674417, g: 0.6337306, b: 0.9937175, a: 1}
+  m_IndirectSpecularColor: {r: 0.29672012, g: 0.63372993, b: 0.9937205, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5854,7 +5854,7 @@ PrefabInstance:
         type: 3}
       propertyPath: hats.Array.data[3]
       value: 
-      objectReference: {fileID: 2921960854527652583, guid: da6378df17ce65242bf3f36321a28a61,
+      objectReference: {fileID: 5273717484045500561, guid: cb125ddca5b8a3c4bb787f72a8ede437,
         type: 3}
     - target: {fileID: 2141108124437862769, guid: aa673135c59dddf4eb89d448f9f1bd66,
         type: 3}
@@ -5975,6 +5975,10 @@ MonoBehaviour:
   - {fileID: 426435143}
   - {fileID: 40277236}
   sceneNumber: 0
+  images: []
+  sprites: []
+  checkCinematic: {fileID: 0}
+  audioClip: {fileID: 0}
 --- !u!1 &835365373
 GameObject:
   m_ObjectHideFlags: 0
