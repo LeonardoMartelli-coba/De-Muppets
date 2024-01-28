@@ -22,7 +22,18 @@ public class ResetTrigger : MonoBehaviour
 
             int num = other.GetComponent<Duck>().playerNUm;
             Debug.Log(("OGGG " + num));
-            StartCoroutine(ResetCoroutine(num));
+
+            HatManager.Instance.points[num]++;
+            uiPoints.UpdatePoints();
+            if (!scored) {
+                StartCoroutine(DelayTime());
+            }
+            if (num == 1) {
+                duck1.StopFalling();
+            }
+            else {
+                duck2.StopFalling();
+            }
             if (num == 1) {
                 if (HatManager.Instance.points[num] == 3) {
                     duck2.BigVicoryAnim();
@@ -33,6 +44,7 @@ public class ResetTrigger : MonoBehaviour
                 }
                 else {
                     duck2.PlayRandomVicotryAnimation();
+                    StartCoroutine(ResetCoroutine(num));
                 }
             }
             else {
@@ -45,6 +57,7 @@ public class ResetTrigger : MonoBehaviour
                 }
                 else {
                     duck1.PlayRandomVicotryAnimation();
+                    StartCoroutine(ResetCoroutine(num));
                 }
             }
         }
@@ -60,19 +73,11 @@ public class ResetTrigger : MonoBehaviour
 
     IEnumerator ResetCoroutine(int n)
     {
-        HatManager.Instance.points[n]++;
-        if (!scored) {
-            StartCoroutine(DelayTime());
-        }
+
 
         PlaySoundsRoundom(VictoryRoundsSounds);
-        uiPoints.UpdatePoints();
-        if (n == 1) {
-            duck1.StopFalling();
-        }
-        else {
-            duck2.StopFalling();
-        }
+
+
         yield return new WaitForSeconds(0.5f);
         duck1.transform.position = spawnDuck1.position;
         duck1.transform.rotation = spawnDuck1.rotation;
